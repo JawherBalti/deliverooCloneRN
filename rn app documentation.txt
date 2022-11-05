@@ -1,0 +1,98 @@
+npm create-expo-app "app name"
+npm i -g @expo/ngrok (only once not with every app)
+
+npx expo start (on the same network recommended) or npx expo start --tunnel (on different networks)
+
+connect phone and pc on the same network:
+create a hotspot from pc
+turn off firewall
+connect phone to pc using wifi
+
+install tailwind css
+npm install tailwindcss-react-native
+npm install --save-dev tailwindcss
+
+install hero icons
+npm install react-native-heroicons
+npm install react-native-svg@9.13.3
+
+wrap the app component with <TailwindProvider></TailwindProvider>
+
+create tailwind.config.js file and add the following:
+module.exports = {
+  content: [
+    './screens/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+};
+
+allow navigation between screens, pages and components by installing react-navigation
+npm install @react-navigation/native
+
+wrap the tailwindprovide in app.js with <NavigationContainer></NavigationContainer>
+npm install @react-navigation/native-stack
+
+add the following to babel.config.js
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins:["tailwindcss-react-native/babel"]
+  };
+};
+
+in app.js create a navigator and use it to wrap your screens/components
+const Stack = createNativeStackNavigator();
+
+after modifying babel.config.js restart server using the following command
+npx expo start --tunnel --clear
+
+Sanity setup
+npm i -g @sanity/cli (only once)
+
+in project folder, initialize sanity project
+sanity init
+
+start sanity
+sanity start
+
+connect frontend to sanity backed
+npm install @sanity/client @sanity/image-url
+
+create sanity.js file in frontend
+add project id from sanity.json in sanity folder to sanity.js in frontend
+
+Add CORS policy exception to sanity
+in sanity folder run: sanity cors add http://localhost:3000
+or using sanity ui: manage projects > api > add cors origins > http://localhost:3000 (check allow credentials), http://localhost:19000(rn server) (check allow credentials)
+
+Deploy APP
+Install eas:
+npm install -g eas-cli (only once)
+login to eas:
+eas login (enter expo login credentials)
+overwrite the eas.json file with the following:
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "production": {}
+  }
+}
+
+build the app with the following command:
+eas build -p android --profile preview
+
+Once your build is completed, open the URL to the APK from the build details page in your device to download the apk file
