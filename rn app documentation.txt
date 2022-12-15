@@ -1,6 +1,7 @@
-npm create-expo-app "app name" or npx create-expo-app "app name"
+npm i -g expo-cli (only once not with every app)
 npm i -g @expo/ngrok (only once not with every app)
 
+npm create-expo-app "app name" or npx create-expo-app "app name"
 expo start or npx expo start (on the same network recommended) or npx expo start --tunnel (on different networks)
 
 connect phone and pc on the same network:
