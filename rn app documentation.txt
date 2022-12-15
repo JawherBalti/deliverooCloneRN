@@ -1,7 +1,7 @@
-npm create-expo-app "app name"
+npm create-expo-app "app name" or npx create-expo-app "app name"
 npm i -g @expo/ngrok (only once not with every app)
 
-npx expo start (on the same network recommended) or npx expo start --tunnel (on different networks)
+expo start or npx expo start (on the same network recommended) or npx expo start --tunnel (on different networks)
 
 connect phone and pc on the same network:
 create a hotspot from pc
