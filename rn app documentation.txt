@@ -2,7 +2,7 @@ npm i -g expo-cli (only once not with every app)
 npm i -g @expo/ngrok (only once not with every app)
 
 npm create-expo-app "app name" or npx create-expo-app "app name"
-expo start or npx expo start (on the same network recommended) or npx expo start --tunnel (on different networks)
+npx expo start (on the same network recommended) or expo start or npx expo start --tunnel (on different networks)
 
 connect phone and pc on the same network:
 create a hotspot from pc
@@ -28,12 +28,6 @@ module.exports = {
   ],
 };
 
-allow navigation between screens, pages and components by installing react-navigation
-npm install @react-navigation/native
-
-wrap the tailwindprovide in app.js with <NavigationContainer></NavigationContainer>
-npm install @react-navigation/native-stack
-
 add the following to babel.config.js
 module.exports = function(api) {
   api.cache(true);
@@ -42,6 +36,13 @@ module.exports = function(api) {
     plugins:["tailwindcss-react-native/babel"]
   };
 };
+
+allow navigation between screens, pages and components
+npm install @react-navigation/native
+npm install @react-navigation/native-stack
+expo install react-native-screens react-native-safe-area-content
+
+wrap the tailwindprovide in app.js with <NavigationContainer></NavigationContainer>
 
 in app.js create a navigator and use it to wrap your screens/components
 const Stack = createNativeStackNavigator();
